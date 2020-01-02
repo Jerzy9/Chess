@@ -1,0 +1,85 @@
+//0 king black
+        // 1 white king
+        boolean szachDetected = false,noSzach = true;
+        //right
+        //checking field by field, if there is any figure on the road to szach
+        for (int i = x+120; i < 980 && !szachDetected; i += 120) {
+            // j = 2, couse on first and second place are Kings
+            for (int j = 2; j < figuresList.size(); j++) {
+                if (i == figuresList.get(j).getX() &&  y == figuresList.get(j).getY()) {
+                    noSzach = false;
+                    break;
+                    //if it's false, detected some figure on his way, (close this loop)
+                }
+            }
+            // if noSzach is false, skip checking next fields
+            if (noSzach) {
+                if (white && y == figuresList.get(0).getY() && i == figuresList.get(0).getX()) {
+                    szachDetected = true;
+                } else if (black && y == figuresList.get(1).getY() && i == figuresList.get(1).getX()) {
+                    szachDetected = true;
+                }
+                //break;
+            }
+            //if szachDetected is true, skip rest of for loops, all loops have if(... && !szachDetected)
+        }
+
+        //left
+        noSzach = true;
+        for (int i = x-120; i > 20 && !szachDetected; i -= 120) {
+
+            for (int j = 2; j < figuresList.size(); j++) {
+                if (i == figuresList.get(j).getX() &&  y == figuresList.get(j).getY()) {
+
+                    noSzach = false;
+                    break;
+                }
+            }
+            if(noSzach) {
+                if (white && y == figuresList.get(0).getY() && i == figuresList.get(0).getX()) {
+                    szachDetected = true;
+                } else if (black && y == figuresList.get(1).getY() && i == figuresList.get(1).getX()) {
+                    szachDetected = true;
+                }
+            }
+        }
+
+        //down
+        noSzach = true;
+        for (int i = y+120; i < 980 && !szachDetected; i += 120) {
+            for (int j = 2; j < figuresList.size(); j++) {
+                if (i == figuresList.get(j).getY() &&  x == figuresList.get(j).getX()) {
+                    noSzach = false;
+                    break;
+                }
+            }
+            if (noSzach) {
+                if (white && x == figuresList.get(0).getX() && i == figuresList.get(0).getY()) {
+                    szachDetected = true;
+                } else if (black && x == figuresList.get(1).getX() && i == figuresList.get(1).getY()) {
+                    szachDetected = true;
+                }
+            }
+        }
+
+        //up
+        noSzach = true;
+        for (int i = y-120; i > 20 && !szachDetected; i -= 120) {
+            for (int j = 2; j < figuresList.size(); j++) {
+                if (i == figuresList.get(j).getY() &&  x == figuresList.get(j).getX()) {
+                    noSzach = false;
+                    break;
+                }
+            }
+           if (noSzach) {
+                if (white && x == figuresList.get(0).getX() && i == figuresList.get(0).getY()) {
+                    szachDetected = true;
+                } else if (black && x == figuresList.get(1).getX() && i == figuresList.get(1).getY()) {
+                    szachDetected = true;
+                }
+            }
+        }
+        if (szachDetected) {
+            System.out.println("szach");
+        }
+    }
